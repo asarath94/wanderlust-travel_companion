@@ -1,0 +1,2 @@
+options of adding name and confirming password doesnt work on signup page. 
+
