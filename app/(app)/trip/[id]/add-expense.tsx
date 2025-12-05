@@ -163,7 +163,7 @@ export default function AddExpense() {
           </View>
         </View>
       ) : (
-        <View className="bg-blue-900 pt-3 pb-3 px-6 shadow-md">
+        <View className="bg-blue-900 pt-12 pb-3 px-6 shadow-md">
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center flex-1">
               <TouchableOpacity onPress={() => router.back()} className="mr-4 bg-white/20 w-10 h-10 rounded-full items-center justify-center active:bg-white/30">
