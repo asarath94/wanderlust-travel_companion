@@ -1208,7 +1208,7 @@ export default function TripDetails() {
           </View>
         </View>
       ) : (
-        <View className="bg-blue-900 pt-3 pb-3 px-6 shadow-md z-50">
+        <View className="bg-blue-900 pt-12 pb-3 px-6 shadow-md z-50">
           <View className="flex-row items-center justify-between mb-3">
             {/* Left: Back Button + Trip Name + Edit */}
             <View className="flex-row items-center flex-1 mr-3">

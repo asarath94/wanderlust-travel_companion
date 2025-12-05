@@ -122,7 +122,7 @@ export default function Dashboard() {
         </View>
       ) : (
         <TouchableWithoutFeedback onPress={() => showMenu && setShowMenu(false)}>
-          <View className="bg-blue-900 pt-3 pb-3 px-4 shadow-md z-50">
+          <View className="bg-blue-900 pt-12 pb-3 px-4 shadow-md z-50">
             <View className="flex-row items-center justify-between relative">
               {/* Left: Logo */}
               <View style={{ zIndex: 1 }}>
