@@ -1132,7 +1132,7 @@ export default function TripDetails() {
               {/* Row 1: Back Button & Trip Name */}
               <View className="flex-row items-center mb-4">
                 <TouchableOpacity onPress={() => router.back()} className="mr-4 bg-white/20 w-10 h-10 rounded-full items-center justify-center active:bg-white/30">
-                  <Text className="text-white text-xl font-bold pb-1">←</Text>
+                  <Text className="text-white text-xl font-bold pb-0.5">←</Text>
                 </TouchableOpacity>
                 <View className="flex-1">
                   <Text className="text-white text-3xl font-bold tracking-tight">{trip.name}</Text>
@@ -1213,7 +1213,7 @@ export default function TripDetails() {
             {/* Left: Back Button + Trip Name + Edit */}
             <View className="flex-row items-center flex-1 mr-3">
               <TouchableOpacity onPress={() => router.back()} className="mr-3 bg-white/20 w-10 h-10 rounded-full items-center justify-center active:bg-white/30">
-                <Text className="text-white text-xl font-bold pb-1">←</Text>
+                <Text className="text-white text-xl font-bold pb-0.5">←</Text>
               </TouchableOpacity>
               <View className="flex-1">
                 <Text className="text-white text-xl font-bold tracking-tight" numberOfLines={1}>{trip.name}</Text>
