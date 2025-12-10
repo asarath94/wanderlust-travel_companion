@@ -151,7 +151,7 @@ export default function AddExpense() {
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center flex-1">
               <TouchableOpacity onPress={() => router.back()} className="mr-4 bg-white/20 w-10 h-10 rounded-full items-center justify-center active:bg-white/30">
-                <Text className="text-white text-xl font-bold pb-0.5">←</Text>
+                <Text className="text-white text-xl font-bold pb-1.5">←</Text>
               </TouchableOpacity>
               <Text className="text-white text-2xl font-bold tracking-tight">Add Expense</Text>
             </View>
@@ -167,7 +167,7 @@ export default function AddExpense() {
           <View className="flex-row items-center justify-between">
             <View className="flex-row items-center flex-1">
               <TouchableOpacity onPress={() => router.back()} className="mr-4 bg-white/20 w-10 h-10 rounded-full items-center justify-center active:bg-white/30">
-                <Text className="text-white text-xl font-bold pb-0.5">←</Text>
+                <Text className="text-white text-xl font-bold pb-1.5">←</Text>
               </TouchableOpacity>
               <Text className="text-white text-2xl font-bold tracking-tight">Add Expense</Text>
             </View>
