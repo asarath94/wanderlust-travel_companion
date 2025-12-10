@@ -45,6 +45,11 @@ export default function Login() {
             onChangeText={setPassword}
             secureTextEntry
           />
+          <Link href="/(auth)/forgot-password" asChild>
+            <TouchableOpacity className="self-end mt-2">
+              <Text className="text-blue-900 font-medium text-sm">Forgot Password?</Text>
+            </TouchableOpacity>
+          </Link>
         </View>
 
         <TouchableOpacity 
