@@ -2,7 +2,7 @@
 
 **Live App:** -Access the app at the links below
 Web version: [https://wanderlust-travel-companion.vercel.app/login](https://wanderlust-travel-companion.vercel.app/login)
-Mobile version(link to download apk file):
+Mobile version(link to download apk file): [https://drive.google.com/file/d/15kMg23LEhBamV2BfTU3O-BbiIsj_nnB-/view?usp=sharing](https://drive.google.com/file/d/15kMg23LEhBamV2BfTU3O-BbiIsj_nnB-/view?usp=sharing)
 
 Wanderlust is a comprehensive travel planning application designed to make group trips seamless and enjoyable. From AI-powered itinerary generation to expense splitting and document management, Wanderlust handles all the logistics so you can focus on the adventure.
 
