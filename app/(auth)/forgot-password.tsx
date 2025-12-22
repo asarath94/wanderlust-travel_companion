@@ -1,3 +1,4 @@
+import { ShadowBox } from '@/components/ShadowBox';
 import { router } from 'expo-router';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
@@ -49,12 +50,14 @@ export default function ForgotPassword() {
   return (
     <KeyboardAwareScrollView 
       enableOnAndroid={true}
-      extraScrollHeight={20}
+      extraScrollHeight={100}
+      extraHeight={135}
+      enableAutomaticScroll={true}
       contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}
       className="bg-slate-50"
       keyboardShouldPersistTaps="handled"
     >
-      <View className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+      <ShadowBox className="bg-white p-8 rounded-xl w-full max-w-md" shadowLevel="lg">
         <Text className="text-3xl font-bold text-indigo-900 mb-2 text-center">Reset Password</Text>
         <Text className="text-slate-500 mb-8 text-center">Enter your email to receive a reset link</Text>
         
@@ -71,21 +74,23 @@ export default function ForgotPassword() {
           />
         </View>
 
-        <TouchableOpacity 
-          className={`bg-blue-900 p-4 rounded-lg w-full items-center shadow-md mb-6 ${loading ? 'opacity-70' : ''}`}
-          onPress={handleResetPassword}
-          disabled={loading}
-          activeOpacity={0.8}
-        >
-          <Text className="text-white font-bold text-lg">
-            {loading ? 'Sending...' : 'Send Reset Link'}
-          </Text>
-        </TouchableOpacity>
+        <ShadowBox className="w-full mb-6" shadowLevel="md">
+          <TouchableOpacity 
+            className={`bg-blue-900 p-4 rounded-lg w-full items-center ${loading ? 'opacity-70' : ''}`}
+            onPress={handleResetPassword}
+            disabled={loading}
+            activeOpacity={0.8}
+          >
+            <Text className="text-white font-bold text-lg">
+              {loading ? 'Sending...' : 'Send Reset Link'}
+            </Text>
+          </TouchableOpacity>
+        </ShadowBox>
 
         <TouchableOpacity onPress={() => router.back()} className="items-center">
           <Text className="text-slate-600 font-medium">Back to Login</Text>
         </TouchableOpacity>
-      </View>
+      </ShadowBox>
     </KeyboardAwareScrollView>
   );
 }

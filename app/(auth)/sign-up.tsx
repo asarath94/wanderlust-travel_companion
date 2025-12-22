@@ -1,7 +1,9 @@
+import { ShadowBox } from '@/components/ShadowBox';
 import { Link, router } from 'expo-router';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { auth } from '../../firebaseConfig';
 
 export default function SignUp() {
@@ -77,8 +79,16 @@ export default function SignUp() {
   };
 
   return (
-    <View className="flex-1 justify-center items-center bg-gray-50 p-6">
-      <View className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <KeyboardAwareScrollView 
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
+      className="bg-gray-50 p-6"
+      enableOnAndroid={true}
+      extraScrollHeight={100}
+      extraHeight={135}
+      enableAutomaticScroll={true}
+      keyboardShouldPersistTaps="handled"
+    >
+      <ShadowBox className="bg-white p-8 rounded-xl w-full max-w-md" shadowLevel="lg">
         <Text className="text-3xl font-bold text-indigo-900 mb-2 text-center">Create Account</Text>
         <Text className="text-gray-500 mb-8 text-center">Start planning your dream trips</Text>
         
@@ -152,21 +162,24 @@ export default function SignUp() {
           {errors.confirmPassword ? <Text className="text-red-500 text-sm mt-1 ml-1">{errors.confirmPassword}</Text> : null}
         </View>
 
-        <TouchableOpacity 
-          className="bg-indigo-700 p-4 rounded-lg w-full items-center shadow-md mb-6" 
-          onPress={handleSignUp}
-          activeOpacity={0.8}
-        >
-          <Text className="text-white font-bold text-lg">Sign Up</Text>
-        </TouchableOpacity>
+        <ShadowBox className="w-full mb-6" shadowLevel="md">
+          <TouchableOpacity 
+            className="bg-blue-900 p-4 rounded-lg w-full items-center" 
+            onPress={handleSignUp}
+            activeOpacity={0.8}
+          >
+            <Text className="text-white font-bold text-lg">Sign Up</Text>
+          </TouchableOpacity>
+        </ShadowBox>
 
         <View className="flex-row justify-center">
           <Text className="text-gray-600">Already have an account? </Text>
-          <Link href="/(auth)/login" className="text-indigo-700 font-bold">
+          <Link href="/(auth)/login" className="text-blue-900 font-bold">
             Login
           </Link>
         </View>
-      </View>
-    </View>
+      </ShadowBox>
+    </KeyboardAwareScrollView>
   );
 }
+

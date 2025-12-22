@@ -1,7 +1,9 @@
+import { ShadowBox } from '@/components/ShadowBox';
 import { Link, router } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { auth } from '../../firebaseConfig';
 
 export default function Login() {
@@ -18,8 +20,16 @@ export default function Login() {
   };
 
   return (
-    <View className="flex-1 justify-center items-center bg-slate-50 p-6">
-      <View className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+    <KeyboardAwareScrollView 
+      contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center' }}
+      className="bg-slate-50 p-6"
+      enableOnAndroid={true}
+      extraScrollHeight={100}
+      extraHeight={135}
+      enableAutomaticScroll={true}
+      keyboardShouldPersistTaps="handled"
+    >
+      <ShadowBox className="bg-white p-8 rounded-xl w-full max-w-md" shadowLevel="lg">
         <Text className="text-3xl font-bold text-indigo-900 mb-2 text-center">Welcome Back</Text>
         <Text className="text-slate-500 mb-8 text-center">Sign in to continue your journey</Text>
         
@@ -52,13 +62,15 @@ export default function Login() {
           </Link>
         </View>
 
-        <TouchableOpacity 
-          className="bg-blue-900 p-4 rounded-lg w-full items-center shadow-md mb-6" 
-          onPress={handleLogin}
-          activeOpacity={0.8}
-        >
-          <Text className="text-white font-bold text-lg">Sign In</Text>
-        </TouchableOpacity>
+        <ShadowBox className="w-full mb-6" shadowLevel="md">
+          <TouchableOpacity 
+            className="bg-blue-900 p-4 rounded-lg w-full items-center" 
+            onPress={handleLogin}
+            activeOpacity={0.8}
+          >
+            <Text className="text-white font-bold text-lg">Sign In</Text>
+          </TouchableOpacity>
+        </ShadowBox>
 
         <View className="flex-row justify-center">
           <Text className="text-slate-600">Don't have an account? </Text>
@@ -66,8 +78,9 @@ export default function Login() {
             Sign Up
           </Link>
         </View>
-      </View>
-    </View>
+      </ShadowBox>
+    </KeyboardAwareScrollView>
   );
 }
+
 

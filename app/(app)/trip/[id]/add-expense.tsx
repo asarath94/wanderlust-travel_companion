@@ -2,7 +2,9 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { router, useLocalSearchParams } from 'expo-router';
 import { addDoc, collection, doc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Image, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Platform, Text, TextInput } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { TouchableOpacity, View } from '../../../../components/ShadowView';
 import { useAuth } from '../../../../context/AuthContext';
 import { db } from '../../../../firebaseConfig';
 import { useIsMobile } from '../../../../hooks/useResponsive';
@@ -180,7 +182,14 @@ export default function AddExpense() {
         </View>
       )}
 
-      <ScrollView className="flex-1 p-6">
+      <KeyboardAwareScrollView 
+        className="flex-1 p-6"
+        enableOnAndroid={true}
+        extraScrollHeight={100}
+        extraHeight={135}
+        enableAutomaticScroll={true}
+        keyboardShouldPersistTaps="handled"
+      >
         {/* Amount */}
         <Text className="text-slate-500 font-bold mb-2 text-xs uppercase tracking-wider">Amount (₹) *</Text>
         <TextInput
@@ -307,7 +316,7 @@ export default function AddExpense() {
             {submitting ? 'Adding Expense...' : 'Add Expense'}
           </Text>
         </TouchableOpacity>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </View>
   );
 }

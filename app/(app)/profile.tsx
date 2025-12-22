@@ -2,7 +2,9 @@ import { router } from 'expo-router';
 import { deleteUser, EmailAuthProvider, reauthenticateWithCredential, updatePassword, updateProfile } from 'firebase/auth';
 import { collection, deleteDoc, getDocs, query, where } from 'firebase/firestore';
 import { useState } from 'react';
-import { ActivityIndicator, Alert, Image, Platform, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, Image, Platform, Text, TextInput } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { TouchableOpacity, View } from '../../components/ShadowView';
 import { useAuth } from '../../context/AuthContext';
 import { db } from '../../firebaseConfig';
 import { useIsMobile } from '../../hooks/useResponsive';
@@ -187,7 +189,6 @@ export default function Profile() {
   return (
     <View className="flex-1 bg-slate-50">
       {/* Header */}
-      {/* Header */}
       {!isMobile ? (
         <View className="bg-blue-900 pt-6 pb-6 px-6 shadow-md">
           <View className="flex-row items-center justify-between">
@@ -222,7 +223,14 @@ export default function Profile() {
         </View>
       )}
 
-      <ScrollView className="flex-1 p-6">
+      <KeyboardAwareScrollView 
+        className="flex-1 p-6"
+        enableOnAndroid={true}
+        extraScrollHeight={100}
+        extraHeight={135}
+        enableAutomaticScroll={true}
+        keyboardShouldPersistTaps="handled"
+      >
         {/* User Info */}
         <View className="bg-white p-6 rounded-xl mb-6 shadow-lg border border-slate-100">
           <View className="flex-row justify-between items-center mb-2">
@@ -372,7 +380,8 @@ export default function Profile() {
             )}
           </TouchableOpacity>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </View>
   );
 }
+
