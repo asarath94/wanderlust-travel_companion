@@ -226,8 +226,8 @@ export default function Profile() {
       <KeyboardAwareScrollView 
         className="flex-1 p-6"
         enableOnAndroid={true}
-        extraScrollHeight={100}
-        extraHeight={135}
+        extraScrollHeight={160}
+        extraHeight={200}
         enableAutomaticScroll={true}
         keyboardShouldPersistTaps="handled"
       >

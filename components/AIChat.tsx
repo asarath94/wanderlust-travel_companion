@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { sendChatMessage } from '../services/aiService';
 
 interface Message {
@@ -80,23 +80,14 @@ export default function AIChat({ tripContext, onGenerateItinerary, isGenerating 
 
   return (
     <KeyboardAvoidingView 
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined} 
+      behavior="padding" 
       className="flex-1 bg-white"
-      keyboardVerticalOffset={100}
+      keyboardVerticalOffset={150}
     >
-      <FlatList
-        data={messages}
-        renderItem={renderMessage}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={{ padding: 16 }}
-        className="flex-1"
-      />
-
-      {/* Actions Area */}
-      <View className="p-4 border-t border-gray-100 bg-white">
-        {/* Generate Button */}
+      {/* Generate Button at Top */}
+      <View className="px-0 pt-8 pb-4 bg-white">
         <TouchableOpacity
-          className={`mb-3 py-3 rounded-lg flex-row justify-center items-center ${
+          className={`w-full py-4 flex-row justify-center items-center ${
             isGenerating ? 'bg-gray-100' : 'bg-purple-100'
           }`}
           onPress={onGenerateItinerary}
@@ -111,7 +102,18 @@ export default function AIChat({ tripContext, onGenerateItinerary, isGenerating 
             {isGenerating ? 'Planning your trip...' : 'Generate Full Itinerary'}
           </Text>
         </TouchableOpacity>
+      </View>
 
+      <FlatList
+        data={messages}
+        renderItem={renderMessage}
+        keyExtractor={(item) => item.id}
+        contentContainerStyle={{ padding: 16 }}
+        className="flex-1"
+      />
+
+      {/* Input Area Area */}
+      <View className="p-4 border-t border-b border-gray-100 bg-white">
         {/* Input Area */}
         <View className="flex-row items-center">
           <TextInput

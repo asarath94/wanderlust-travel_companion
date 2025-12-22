@@ -1,6 +1,8 @@
 # 🌍 Wanderlust Travel Companion
 
-**Live App:** [https://wanderlust-travel-companion-git-main-saraths-projects-a1d83397.vercel.app/](https://wanderlust-travel-companion-git-main-saraths-projects-a1d83397.vercel.app/)
+**Live App:** -Access the app at the links below
+Web version: [https://wanderlust-travel-companion.vercel.app/login](https://wanderlust-travel-companion.vercel.app/login)
+Mobile version(link to download apk file):
 
 Wanderlust is a comprehensive travel planning application designed to make group trips seamless and enjoyable. From AI-powered itinerary generation to expense splitting and document management, Wanderlust handles all the logistics so you can focus on the adventure.
 
