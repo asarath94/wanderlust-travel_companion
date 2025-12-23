@@ -1,0 +1,52 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user is the admin (creator) of the trip by UID
+    function isTripAdmin(tripId) {
+      return isAuthenticated() && 
+        (request.auth.uid == get(/databases/$(database)/documents/trips/$(tripId)).data.adminId);
+    }
+    
+    // Check if user is a participant of the trip by Email or is the Admin
+    function isTripParticipant(tripId) {
+      let trip = get(/databases/$(database)/documents/trips/$(tripId)).data;
+      return isAuthenticated() && (
+        request.auth.uid == trip.adminId || 
+        (request.auth.token.email != null && request.auth.token.email in trip.participants)
+      );
+    }
+
+    // Rules for the Trips collection
+    match /trips/{tripId} {
+      // Any logged in user can create a trip
+      allow create: if isAuthenticated();
+      
+      // Participants can view the trip
+      allow read: if isAuthenticated() && (
+        request.auth.uid == resource.data.adminId || 
+        (request.auth.token.email != null && request.auth.token.email in resource.data.participants)
+      );
+      
+      // Only Admin can edit the core trip details or delete it
+      // Exception: allow participants to update specific fields like 'isSettled' or 'photosLink'
+      allow update: if isTripAdmin(tripId) || (
+        isTripParticipant(tripId) && 
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isSettled', 'photosLink'])
+      );
+      
+      allow delete: if isTripAdmin(tripId);
+      
+      // Rules for ALL sub-collections (expenses, itineraries, documents, reminders)
+      match /{subcollection}/{document=**} {
+        // Any participant can read and write to sub-collections
+        allow read, write: if isTripParticipant(tripId);
+      }
+    }
+  }
+}
