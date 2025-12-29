@@ -1,0 +1,36 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Check if user is the admin (creator) of the trip by UID using Firestore lookup
+    function isTripAdmin(tripId) {
+      return isAuthenticated() && 
+        (request.auth.uid == firestore.get(/databases/(default)/documents/trips/$(tripId)).data.adminId);
+    }
+    
+    // Check if user is a participant of the trip by Email or is the Admin using Firestore lookup
+    function isTripParticipant(tripId) {
+      let trip = firestore.get(/databases/(default)/documents/trips/$(tripId)).data;
+      return isAuthenticated() && (
+        request.auth.uid == trip.adminId || 
+        (request.auth.token.email != null && request.auth.token.email in trip.participants)
+      );
+    }
+
+    // Rules for Trip Documents
+    match /trips/{tripId}/documents/{fileName} {
+      // Allow read/write if the user is a participant of the trip
+      allow read, write: if isTripParticipant(tripId);
+    }
+    
+    // Default deny
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
